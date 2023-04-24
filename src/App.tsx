@@ -1,16 +1,24 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
+import { ThemeProvider } from 'styled-components'
 
-import GlobalStyle, { ContainerDefault } from './styles/GlobalStyles'
-import Dashboard from './pages/Dashboard'
+import GlobalStyle from './styles/GlobalStyles'
+import Layout from './components/Layout'
 
-const App: React.FC = () =>  {
+import darkTheme from './styles/themes/dark'
+import AppRoutes from './routes/app.routes'
+
+interface Props {
+    children?: ReactNode
+}
+
+const App: React.FC<Props> = ({ children }) =>  {
     return (
-        <>
+        <ThemeProvider theme={darkTheme}>
             <GlobalStyle />
-            <ContainerDefault>
-                <Dashboard />
-            </ContainerDefault>
-        </>
+            <Layout>
+                <AppRoutes />
+            </Layout>
+        </ThemeProvider>
     )
 }
 
